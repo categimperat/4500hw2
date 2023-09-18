@@ -1,0 +1,117 @@
+//variable declarations
+
+//below are arrays which will be populated with the data from inputfile.txt
+int array size 5 "experiment 1 dimensions"
+int array size 3 "experiment 1 PMR"
+int array size 5 "experiment 2 reps"
+int array size 3 "experiment 2 DPM"
+int array size 4 "experiment 3 protocols" = [4,4,8,8]
+int array size 3 "experiment 3 DMR"
+
+//below are just lists of 12 or 15 elements containing lo0, hi0, avg0, lo1, hi1, avg1 ... in that order. 
+//quick and dirty way of storing results for each experiment. 
+List resultsExp1
+List resultsExp2
+List resultsExp3
+    
+int function protocol4 (int dimensions, int moves, int reps)
+    //moves according to protocol 4
+    return number of moves until meet
+
+int function protocol8 (int dimensions, int moves, int reps)
+    //moves according to protocol 8 
+    return number of moves until meet
+
+void function simulationRun (int experimentNumber, string protocol, int dimensions, int moves, int reps) 
+
+    //this function defines one simulation run. 
+    //this function will be called five times for experiments 1 and 2, and four times for experiment 3. 
+    //one "result" is a number of moves until meeting. 
+    //one simulation run will have a number of results equal to reps.
+
+    List rawData
+    
+    for i in reps 
+        protocol (dimensions, moves, reps)
+        append result to rawData     
+    
+    
+    take lo, hi, and avg of rawData. 
+    append these values to the appropriate List based on experimentNumber. 
+
+void function parseInput
+
+    //this function ensures that inputfile.txt is formatted properly and stores data in arrays for use later. 
+
+    //to keep track of errors in inputfile, we keep track of which rule(s) was violated in a List. 
+    //if the size of the List is nonzero by the end, halt program, print number of errors, and print which rules were violated.
+
+    //store the contents of the file in the six arrays defined above. 
+    //only store the file contents if the line is good (after the line check). 
+
+    List errors
+
+    check line 1 
+        has five integers, separated by commas, increasing, no spaces
+            each int <= 100
+    store in array
+
+    check line 2
+        has three integers, separated by commas, no spaces
+            first int = 4 | 8
+            second int <= 1000000
+            third int <= 10000
+    store in array   
+
+    check line 3
+        has five integers, separated by commas, increasing, no spaces
+            each int <= 10000
+    store in array
+
+    check line 4
+        has three integers, separated by commas, no spaces 
+            first int <= 100
+            second int = 4 | 8
+            third int <= 10000
+    store in array
+
+    check line 5
+        line is 4,4,8,8
+    //no need to store in array here
+
+    check line 6
+        has three integers, separated by commas, no spaces 
+            first int <= 100
+            second int <= 1000000
+            third int <= 10000 
+    store in array
+
+    //if there are any errors, print how many there are, and what the errors are. 
+    //then halt the program. 
+    //since we check each line individually, we can easily store any errors and print them back here. 
+    if size of List > 0
+        print size of list 
+        print List errors 
+        end program
+
+void function main
+
+    print a description of the program
+    
+    parseinput
+
+    //experiment 1
+    for each element in "experiment 1 dimensions"
+        simulationRun    
+
+    //experiment 2
+    for each element in "experiment 2 reps"
+        simulationRun
+
+    //experiment 3
+    for each element in "experiment 3 protocols"
+        simulationRun 
+
+    //at this point, resultsExp1, resultsExp2, and resultsExp3 are fully populated with lows, highs, and averages. 
+    //generate the table and output.txt
+    //you got this lol
