@@ -14,15 +14,6 @@ import java.util.*;
         private static List<Double> resultsExp3 = new ArrayList<>();
 
 
-
-
-        // Function to simulate protocol 8
-        private static int protocol8(int dimensions, int moves, int reps) {
-            // Implement protocol 8 logic here
-            return 0; // Replace with actual implementation
-        }
-
-        // Function to run a simulation
         private static void simulationRun(int experimentNumber, String protocol, int dimensions, int moves, int reps) {
             List<Integer> rawData = new ArrayList<>();
 

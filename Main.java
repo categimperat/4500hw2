@@ -1,9 +1,11 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 class Person {
     int xCoordinate;
     int yCoordinate;
-    int Dimensions;
 
     public Person(int xCoordinate, int yCoordinate) {
         this.xCoordinate = xCoordinate;
@@ -12,6 +14,9 @@ class Person {
 
 }
 public class Main {
+    private static List<Double> resultsExp1 = new ArrayList<>();
+    private static List<Double> resultsExp2 = new ArrayList<>();
+    private static List<Double> resultsExp3 = new ArrayList<>();
     // Function to move the person, protocol 4 or 8
     private static void move(Person person, int protocol, int Dimension) {
         Person temp = new Person(person.xCoordinate, person.yCoordinate);
@@ -92,8 +97,18 @@ public class Main {
             return ++counter;
         else
             return counter;
+    }
 
+    private static List experiment(int repetitions, int Dimension, int maxMoves, int protocol) {
+        List<Integer> data = new ArrayList<>();
+        for (int i = 0; i < repetitions; i++) {
+            Person person1 = new Person(0, 0);
+            Person person2 = new Person(Dimension, Dimension);
+            int result = playGame(person1, person2, Dimension, maxMoves, protocol);
+            data.add(result);
+        }
 
+        return data;
     }
 
 
@@ -102,13 +117,34 @@ public class Main {
         int maxMoves = 10_000;
         int protocol = 8;
         int repetitions = 100;
+        List<Integer> data = new ArrayList<>();
+
+        data = experiment(repetitions, Dimension, maxMoves, protocol);
+        double low = Collections.min(data);
+        double high = Collections.max(data);
+        double average = data.stream().mapToDouble(Integer::doubleValue).average().orElse(0.0);
+        resultsExp1.add(low);
+        resultsExp1.add(high);
+        resultsExp1.add(average);
+
+        data = experiment(repetitions, Dimension, maxMoves, protocol);
+        low = Collections.min(data);
+        high = Collections.max(data);
+        average = data.stream().mapToDouble(Integer::doubleValue).average().orElse(0.0);
+        resultsExp2.add(low);
+        resultsExp2.add(high);
+        resultsExp2.add(average);
+
+        data = experiment(repetitions, Dimension, maxMoves, protocol);
+        low = Collections.min(data);
+        high = Collections.max(data);
+        average = data.stream().mapToDouble(Integer::doubleValue).average().orElse(0.0);
+        resultsExp3.add(low);
+        resultsExp3.add(high);
+        resultsExp3.add(average);
 
 
-        for(int i = 0; i < repetitions; i++) {
-            Person person1 = new Person(0, 0);
-            Person person2 = new Person(Dimension, Dimension);
-            int result = playGame(person1, person2, Dimension, maxMoves, protocol);
-            System.out.println(result);
+
         }
 
 
