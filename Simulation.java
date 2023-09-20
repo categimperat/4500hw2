@@ -101,7 +101,7 @@ import java.util.*;
             }
         }
 
-        public static void main(String[] args) throws IOException {
+        //public static void main(String[] args) throws IOException {
             System.out.println("Description of the program");
 
             // Parse input file
