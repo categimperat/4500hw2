@@ -52,16 +52,19 @@ public class MainClass {
                     person.yCoordinate++;
                     person.xCoordinate--;
                 }
+                break;
             case 6:     //southeast
                 if(person.yCoordinate > 0 && person.xCoordinate < Dimension) {
                     person.yCoordinate--;
                     person.xCoordinate++;
                 }
+                break;
             case 7:     //southwest
                 if(person.yCoordinate > 0 && person.xCoordinate > 0){
                     person.yCoordinate--;
                     person.xCoordinate--;
                 }
+                break;
         }
         if(protocol == 8 && person.xCoordinate == temp.xCoordinate && person.yCoordinate == temp.yCoordinate)
             move(person, protocol, Dimension);
