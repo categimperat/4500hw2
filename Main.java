@@ -54,7 +54,7 @@ public class Main {
 
         try (Stream<String> fileStream = Files.lines(Paths.get("inputfile.txt"))) {
             int noOfLines = (int) fileStream.count();
-            //System.out.println(noOfLines);
+            // System.out.println(noOfLines);
             if (noOfLines > 6) {
                 errors.add("Input file contains too many lines.");
             }
@@ -115,28 +115,27 @@ public class Main {
                         errors.add("Line " + i + " contains an illegal character.");
                         break;
                     } else {
-                        switch (j) {
-                            case 0:
-                                if ((Integer.parseInt(values[0]) != 4) && (Integer.parseInt(values[0]) != 8)) {
-                                    errors.add("Line " + i + " contains an incorrect protocol code.");
-                                    break;
-                                } else {
-                                    experiment1PMR[j] = Integer.parseInt(values[j]);
-                                }
-                            case 1:
-                                if (Integer.parseInt(values[1]) > 1000000) {
-                                    errors.add("Line " + i + " contains a number of moves greater than 1000000.");
-                                    break;
-                                } else {
-                                    experiment1PMR[j] = Integer.parseInt(values[j]);
-                                }
-                            case 2:
-                                if (Integer.parseInt(values[2]) > 100000) {
-                                    errors.add("Line " + i + " contains a number of repetitions greater than 100000.");
-                                    break;
-                                } else {
-                                    experiment1PMR[j] = Integer.parseInt(values[j]);
-                                }
+                        if (j == 0) {
+                            if ((Integer.parseInt(values[0]) != 4) && (Integer.parseInt(values[0]) != 8)) {
+                                errors.add("Line " + i + " contains an incorrect protocol code.");
+                                break;
+                            } else {
+                                experiment1PMR[j] = Integer.parseInt(values[j]);
+                            }
+                        } else if (j == 1) {
+                            if (Integer.parseInt(values[1]) > 1000000) {
+                                errors.add("Line " + i + " contains a number of moves greater than 1000000.");
+                                break;
+                            } else {
+                                experiment1PMR[j] = Integer.parseInt(values[j]);
+                            }
+                        } else if (j == 2) {
+                            if (Integer.parseInt(values[2]) > 100000) {
+                                errors.add("Line " + i + " contains a number of repetitions greater than 100000.");
+                                break;
+                            } else {
+                                experiment1PMR[j] = Integer.parseInt(values[j]);
+                            }
                         }
                     }
                 }
@@ -171,29 +170,28 @@ public class Main {
                         errors.add("Line " + i + " contains an illegal character.");
                         break;
                     } else {
-                        switch (j) {
-                            case 1:
-                                if ((Integer.parseInt(values[1]) != 4) && (Integer.parseInt(values[1]) != 8)) {
-                                    errors.add("Line " + i + " contains an incorrect protocol code.");
-                                    break;
-                                } else {
-                                    experiment2DPM[j] = Integer.parseInt(values[j]);
-                                }
-                            case 2:
-                                if (Integer.parseInt(values[2]) > 1000000) {
-                                    errors.add("Line " + i + " contains a number of moves greater than 1000000.");
-                                    break;
-                                } else {
-                                    experiment2DPM[j] = Integer.parseInt(values[j]);
-                                }
-                            case 0:
-                                if (Integer.parseInt(values[0]) > 100) {
-                                    
-                                    errors.add("Line " + i + " contains a dimension greater than 100.");
-                                    break;
-                                } else {
-                                    experiment2DPM[j] = Integer.parseInt(values[j]);
-                                }
+                        if (j == 0) {
+                            if (Integer.parseInt(values[0]) > 100) {
+
+                                errors.add("Line " + i + " contains a dimension greater than 100.");
+                                break;
+                            } else {
+                                experiment2DPM[j] = Integer.parseInt(values[j]);
+                            }
+                        } else if (j == 1) {
+                            if ((Integer.parseInt(values[1]) != 4) && (Integer.parseInt(values[1]) != 8)) {
+                                errors.add("Line " + i + " contains an incorrect protocol code.");
+                                break;
+                            } else {
+                                experiment2DPM[j] = Integer.parseInt(values[j]);
+                            }
+                        } else if (j == 2) {
+                            if (Integer.parseInt(values[2]) > 1000000) {
+                                errors.add("Line " + i + " contains a number of moves greater than 1000000.");
+                                break;
+                            } else {
+                                experiment2DPM[j] = Integer.parseInt(values[j]);
+                            }
                         }
                     }
                 }
@@ -220,28 +218,28 @@ public class Main {
                         errors.add("Line " + i + " contains an illegal character.");
                         break;
                     } else {
-                        switch (j) {
-                            case 0:
-                                if (Integer.parseInt(values[0]) > 100) {
-                                    errors.add("Line " + i + " contains a dimension greater than 100.");
-                                    break;
-                                } else {
-                                    experiment3DMR[j] = Integer.parseInt(values[j]);
-                                }
-                            case 1:
-                                if (Integer.parseInt(values[1]) > 1000000) {
-                                    errors.add("Line " + i + " contains a number of moves greater than 1000000.");
-                                    break;
-                                } else {
-                                    experiment3DMR[j] = Integer.parseInt(values[j]);
-                                }
-                            case 2:
-                                if (Integer.parseInt(values[2]) > 100000) {
-                                    errors.add("Line " + i + " contains a number of repetitions greater than 100000.");
-                                    break;
-                                } else {
-                                    experiment3DMR[j] = Integer.parseInt(values[j]);
-                                }
+
+                        if (j == 0) {
+                            if (Integer.parseInt(values[0]) > 100) {
+                                errors.add("Line " + i + " contains a dimension greater than 100.");
+                                break;
+                            } else {
+                                experiment3DMR[j] = Integer.parseInt(values[j]);
+                            }
+                        } else if (j == 1) {
+                            if (Integer.parseInt(values[1]) > 1000000) {
+                                errors.add("Line " + i + " contains a number of moves greater than 1000000.");
+                                break;
+                            } else {
+                                experiment2DPM[j] = Integer.parseInt(values[j]);
+                            }
+                        } else if (j == 2) {
+                            if (Integer.parseInt(values[2]) > 100000) {
+                                errors.add("Line " + i + " contains a number of repetitions greater than 100000.");
+                                break;
+                            } else {
+                                experiment3DMR[j] = Integer.parseInt(values[j]);
+                            }
                         }
                     }
                 }
@@ -254,14 +252,16 @@ public class Main {
         br.close();
 
         // print any problematic lines, if there are any.
-        if (!errors.isEmpty()) {
+        if (!errors.isEmpty())
+
+        {
             System.out.println(errors.size() + " error(s) found:");
             for (String error : errors) {
                 System.out.println(error);
             }
             System.exit(1);
         } else {
-            System.out.println("No errors found.");
+            System.out.println("No errors found in input file.");
         }
     }
 
