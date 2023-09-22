@@ -54,13 +54,14 @@ public class Main {
 
         try (Stream<String> fileStream = Files.lines(Paths.get("inputfile.txt"))) {
             int noOfLines = (int) fileStream.count();
-            System.out.println(noOfLines);
+            //System.out.println(noOfLines);
+            if (noOfLines > 6) {
+                errors.add("Input file contains too many lines.");
+            }
         }
 
         // Check and parse each line of input file
-        for (
-
-                int i = 1; i <= 6; i++) {
+        for (int i = 1; i <= 6; i++) {
             line = br.readLine();
             String[] values;
 
@@ -116,21 +117,21 @@ public class Main {
                     } else {
                         switch (j) {
                             case 0:
-                                if ((Integer.parseInt(values[j]) != 4) && (Integer.parseInt(values[j]) != 8)) {
+                                if ((Integer.parseInt(values[0]) != 4) && (Integer.parseInt(values[0]) != 8)) {
                                     errors.add("Line " + i + " contains an incorrect protocol code.");
                                     break;
                                 } else {
                                     experiment1PMR[j] = Integer.parseInt(values[j]);
                                 }
                             case 1:
-                                if (Integer.parseInt(values[j]) > 1000000) {
+                                if (Integer.parseInt(values[1]) > 1000000) {
                                     errors.add("Line " + i + " contains a number of moves greater than 1000000.");
                                     break;
                                 } else {
                                     experiment1PMR[j] = Integer.parseInt(values[j]);
                                 }
                             case 2:
-                                if (Integer.parseInt(values[j]) > 100000) {
+                                if (Integer.parseInt(values[2]) > 100000) {
                                     errors.add("Line " + i + " contains a number of repetitions greater than 100000.");
                                     break;
                                 } else {
@@ -172,21 +173,22 @@ public class Main {
                     } else {
                         switch (j) {
                             case 1:
-                                if ((Integer.parseInt(values[j]) != 4) && (Integer.parseInt(values[j]) != 8)) {
+                                if ((Integer.parseInt(values[1]) != 4) && (Integer.parseInt(values[1]) != 8)) {
                                     errors.add("Line " + i + " contains an incorrect protocol code.");
                                     break;
                                 } else {
                                     experiment2DPM[j] = Integer.parseInt(values[j]);
                                 }
                             case 2:
-                                if (Integer.parseInt(values[j]) > 1000000) {
+                                if (Integer.parseInt(values[2]) > 1000000) {
                                     errors.add("Line " + i + " contains a number of moves greater than 1000000.");
                                     break;
                                 } else {
                                     experiment2DPM[j] = Integer.parseInt(values[j]);
                                 }
                             case 0:
-                                if (Integer.parseInt(values[j]) > 100) {
+                                if (Integer.parseInt(values[0]) > 100) {
+                                    
                                     errors.add("Line " + i + " contains a dimension greater than 100.");
                                     break;
                                 } else {
@@ -220,21 +222,21 @@ public class Main {
                     } else {
                         switch (j) {
                             case 0:
-                                if (Integer.parseInt(values[j]) > 100) {
+                                if (Integer.parseInt(values[0]) > 100) {
                                     errors.add("Line " + i + " contains a dimension greater than 100.");
                                     break;
                                 } else {
                                     experiment3DMR[j] = Integer.parseInt(values[j]);
                                 }
                             case 1:
-                                if (Integer.parseInt(values[j]) > 1000000) {
+                                if (Integer.parseInt(values[1]) > 1000000) {
                                     errors.add("Line " + i + " contains a number of moves greater than 1000000.");
                                     break;
                                 } else {
                                     experiment3DMR[j] = Integer.parseInt(values[j]);
                                 }
                             case 2:
-                                if (Integer.parseInt(values[j]) > 100000) {
+                                if (Integer.parseInt(values[2]) > 100000) {
                                     errors.add("Line " + i + " contains a number of repetitions greater than 100000.");
                                     break;
                                 } else {
@@ -365,12 +367,14 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        System.out.println("The program takes an input file which describes the parameters of 3 different experiments.\n"
-                +
-                "The program takes the input file and parses each of the parameters for the experiments, then it runs\n" +
-                "each experiment according to those parameters.  It will take all the results, calculate the high, low,\n"
-                +
-                " and average values of each experiment, then it will log those results in an output file.\n");
+        System.out
+                .println("The program takes an input file which describes the parameters of 3 different experiments.\n"
+                        +
+                        "The program takes the input file and parses each of the parameters for the experiments, then it runs\n"
+                        +
+                        "each experiment according to those parameters.  It will take all the results, calculate the high, low,\n"
+                        +
+                        " and average values of each experiment, then it will log those results in an output file.\n");
         double low;
         double high;
         double average;
