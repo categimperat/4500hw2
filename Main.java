@@ -365,12 +365,12 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        System.out.println("The program takes an input file which describes the parameters of 3 different experiments."
+        System.out.println("The program takes an input file which describes the parameters of 3 different experiments.\n"
                 +
-                "The program takes the input file and parses each of the parameters for the experiments, then it runs" +
-                "each experiment according to those parameters.  It will take all the results, calculate the high, low,"
+                "The program takes the input file and parses each of the parameters for the experiments, then it runs\n" +
+                "each experiment according to those parameters.  It will take all the results, calculate the high, low,\n"
                 +
-                " and average values of each experiment, then it will log those results in an output file.");
+                " and average values of each experiment, then it will log those results in an output file.\n");
         double low;
         double high;
         double average;
@@ -386,6 +386,7 @@ public class Main {
             resultsExp1.add(low);
             resultsExp1.add(high);
             resultsExp1.add(average);
+            System.out.println("just ran experiment 1 /n");
         }
 
         // Running Experiment 2
@@ -408,6 +409,9 @@ public class Main {
             resultsExp3.add(low);
             resultsExp3.add(high);
             resultsExp3.add(average);
+        }
+        for (Double item : resultsExp1) {
+            System.out.println(item);
         }
 
     }
