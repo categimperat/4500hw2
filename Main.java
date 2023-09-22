@@ -33,12 +33,12 @@ public class Main {
     private static int[] experiment3DMR = new int[3];
 
     private static void parseInput() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("4500hw2/inputfile.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("inputfile.txt"));
 
         String line;
         List<String> errors = new ArrayList<>();
 
-        try (Stream<String> fileStream = Files.lines(Paths.get("4500hw2/inputfile.txt"))) {
+        try (Stream<String> fileStream = Files.lines(Paths.get("inputfile.txt"))) {
             int noOfLines = (int) fileStream.count();
             // System.out.println(noOfLines);
             if (noOfLines > 6) {
@@ -217,7 +217,7 @@ public class Main {
                                 errors.add("Line " + i + " contains a number of moves greater than 1000000.");
                                 break;
                             } else {
-                                experiment2DPM[j] = Integer.parseInt(values[j]);
+                                experiment3DMR[j] = Integer.parseInt(values[j]);
                             }
                         } else if (j == 2) {
                             if (Integer.parseInt(values[2]) > 100000) {
