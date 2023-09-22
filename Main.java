@@ -21,6 +21,26 @@ class Person {
     }
 }
 
+class ExperimentData {
+    int Dimension;
+    int maxMoves;
+    int repetitions;
+    int protocol;
+    double highMoves;
+    double lowMoves;
+    double averageMoves;
+
+    public ExperimentData(int dimension, int maxMoves, int repetitions, int protocol, double lowMoves, double highMoves, double averageMoves) {
+        Dimension = dimension;
+        this.maxMoves = maxMoves;
+        this.repetitions = repetitions;
+        this.protocol = protocol;
+        this.highMoves = highMoves;
+        this.lowMoves = lowMoves;
+        this.averageMoves = averageMoves;
+    }
+}
+
 public class Main {
     private static List<Double> resultsExp1 = new ArrayList<>();
     private static List<Double> resultsExp2 = new ArrayList<>();
@@ -33,12 +53,12 @@ public class Main {
     private static int[] experiment3DMR = new int[3];
 
     private static void parseInput() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("inputfile.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("4500hw2/inputfile.txt"));
 
         String line;
         List<String> errors = new ArrayList<>();
 
-        try (Stream<String> fileStream = Files.lines(Paths.get("inputfile.txt"))) {
+        try (Stream<String> fileStream = Files.lines(Paths.get("4500hw2/inputfile.txt"))) {
             int noOfLines = (int) fileStream.count();
             // System.out.println(noOfLines);
             if (noOfLines > 6) {
@@ -378,6 +398,7 @@ public class Main {
             resultsExp1.add(average);
         }
 
+
         // Running Experiment 2
         for (int i = 0; i < 5; i++) {
             data = experiment(experiment2Reps[i], experiment2DPM[0], experiment2DPM[2], experiment2DPM[1]);
@@ -399,6 +420,21 @@ public class Main {
             resultsExp3.add(high);
             resultsExp3.add(average);
         }
+
+        //Packaging the results of the experiments into objects
+        ExperimentData[] experiment1 = new ExperimentData[5];
+        for (int i = 0; i < 5; i++)
+            experiment1[i] = new ExperimentData(experiment1Dimensions[i], experiment1PMR[1], experiment1PMR[2], experiment1PMR[0], resultsExp1.get((3 * i)), resultsExp1.get((3 * i) + 1), resultsExp1.get((3*i)+2));
+
+        ExperimentData[] experiment2 = new ExperimentData[5];
+        for (int i = 0; i < 5; i++)
+            experiment1[i] = new ExperimentData(experiment2DPM[0], experiment2DPM[2], experiment2Reps[i], experiment2DPM[1], resultsExp2.get((3 * i)), resultsExp2.get((3 * i) + 1), resultsExp2.get((3*i)+2));
+
+        ExperimentData[] experiment3 = new ExperimentData[4];
+        for (int i = 0; i < 4; i++)
+            experiment1[i] = new ExperimentData(experiment3DMR[0], experiment3DMR[1], experiment3DMR[2], experiment3Protocols[i], resultsExp3.get((3 * i)), resultsExp3.get((3 * i) + 1), resultsExp3.get((3*i)+2));
+
+
         for (Double item : resultsExp1) {
             System.out.println(item);
         }
