@@ -33,12 +33,12 @@ public class Main {
     private static int[] experiment3DMR = new int[3];
 
     private static void parseInput() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("inputfile.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("4500hw2/inputfile.txt"));
 
         String line;
         List<String> errors = new ArrayList<>();
 
-        try (Stream<String> fileStream = Files.lines(Paths.get("inputfile.txt"))) {
+        try (Stream<String> fileStream = Files.lines(Paths.get("4500hw2/inputfile.txt"))) {
             int noOfLines = (int) fileStream.count();
             // System.out.println(noOfLines);
             if (noOfLines > 6) {
@@ -376,7 +376,6 @@ public class Main {
             resultsExp1.add(low);
             resultsExp1.add(high);
             resultsExp1.add(average);
-            System.out.println("just ran experiment 1 /n");
         }
 
         // Running Experiment 2
@@ -403,6 +402,17 @@ public class Main {
         for (Double item : resultsExp1) {
             System.out.println(item);
         }
+        System.out.println("-------------------");
+        for (Double item : resultsExp2) {
+            System.out.println(item);
+        }
+        System.out.println("-------------------");
+        for (Double item : resultsExp3) {
+            System.out.println(item);
+        }
+        System.out.println("Dimension:" + experiment2DPM[0] +
+                "\n Protocol: " + experiment2DPM[1] +
+                "\n Moves: " + experiment2DPM[2]);
 
     }
 
