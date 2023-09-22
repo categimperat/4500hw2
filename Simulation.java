@@ -56,8 +56,8 @@ public class Simulation {
     // Function to parse input file
     private static void parseInput() throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("inputfile.txt"));
-        String line;
 
+        String line;
         List<String> errors = new ArrayList<>();
 
         // Check and parse each line of input file
@@ -265,7 +265,7 @@ public class Simulation {
     }
 
     public static void main(String[] args) throws IOException {
-        System.out.println("This is a description of the program.\n");
+        System.out.println("This is a description of the program.");
 
         parseInput();
         // at this point, all six arrays above defined in the top are populated with
