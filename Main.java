@@ -84,23 +84,15 @@ public class Main {
 
         while (counter < maxMoves) {
             if (counter % 2 == 0) {
-                move(person1, protocol, Dimension); // It uses an if statement and take a modulus 2 of the move counter
-                                                    // to rotate between each of the players so they alternate turns.
+                move(person1, protocol, Dimension); 
+                // It uses an if statement and take a modulus 2 of the move counter to rotate between each of the players so they alternate turns.
             } else {
                 move(person2, protocol, Dimension);
             }
             if (person1.xCoordinate == person2.xCoordinate && person1.yCoordinate == person2.yCoordinate)
-                // Then after
-                // the player
-                // has moved
-                // it checks
-                // if there
-                // has been a
-                // meeting, if
-                // there has
-                // it breaks
-                // out of the
-                // loop.
+                // Then after the player has moved it checks if there has been a meeting, if
+                // there has it breaks out of the loop.
+
                 break;
             counter++; // If there isn't a meeting then it adds to the counter and repeats the loop.
         }
