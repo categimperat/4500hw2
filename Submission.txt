@@ -286,7 +286,6 @@ public class Main {
 
         // print any problematic lines, if there are any.
         if (!errors.isEmpty())
-
         {
             System.out.println(errors.size() + " error(s) found:");
             for (String error : errors) {
