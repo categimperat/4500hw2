@@ -328,7 +328,7 @@ public class Main {
     }
 
     //This function runs the experiment and logs the outcome into a dad list.
-    private static List experiment(int repetitions, int Dimension, int maxMoves, int protocol) {
+    private static List<Integer> experiment(int repetitions, int Dimension, int maxMoves, int protocol) {
         List<Integer> data = new ArrayList<>();
         for (int i = 0; i < repetitions; i++) {
             Person person1 = new Person(0, 0);
