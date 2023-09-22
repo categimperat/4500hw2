@@ -260,7 +260,7 @@ public class Simulation {
             }
             System.exit(1);
         } else {
-            System.out.println("No error(s) found.");
+            System.out.println("No errors found.");
         }
     }
 
