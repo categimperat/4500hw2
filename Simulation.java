@@ -110,7 +110,7 @@ public class Simulation {
             } else if (i == 2 && values.length == 3) {
                 // Check and store experiment 1 PMR
                 for (int j = 0; j < values.length; j++) {
-                    Matcher m = p.matcher(values[0]);
+                    Matcher m = p.matcher(values[j]);
                     if (!m.matches()) {
                         errors.add("Line " + i + " contains an illegal character.");
                         break;
@@ -166,7 +166,7 @@ public class Simulation {
             } else if (i == 4 && values.length == 3) {
                 // Check and store experiment 2 DPM
                 for (int j = 0; j < values.length; j++) {
-                    Matcher m = p.matcher(values[0]);
+                    Matcher m = p.matcher(values[j]);
                     if (!m.matches()) {
                         errors.add("Line " + i + " contains an illegal character.");
                         break;
