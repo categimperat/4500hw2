@@ -63,7 +63,6 @@ public class Simulation {
         // Check and parse each line of input file
         for (int i = 1; i <= 6; i++) {
             line = br.readLine();
-            // System.out.println("Line " + i + " read as: " + line);
             String[] values;
 
             // regex matching logic credit:
@@ -269,6 +268,8 @@ public class Simulation {
         System.out.println("This is a description of the program.\n");
 
         parseInput();
+        // at this point, all six arrays above defined in the top are populated with
+        // info necessary to run experiments.
 
         // // Experiment 1
         // for (int dimensions : experiment1Dimensions) {
