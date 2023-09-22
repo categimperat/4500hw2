@@ -38,20 +38,6 @@ public class Main {
         String line;
         List<String> errors = new ArrayList<>();
 
-        // // check number of lines in file
-        // // credit:
-        // //
-        // https://stackoverflow.com/questions/1277880/how-can-i-get-the-count-of-line-in-a-file-in-an-efficient-way
-        // BufferedReader sizeCheck = new BufferedReader(new
-        // FileReader("inputfile.txt"));
-        // int lines = 0;
-        // while (sizeCheck.readLine() != null)
-        // lines++;
-        // if (lines > 6) {
-        // errors.add("Input file contains too many lines.");
-        // }
-        // sizeCheck.close();
-
         try (Stream<String> fileStream = Files.lines(Paths.get("inputfile.txt"))) {
             int noOfLines = (int) fileStream.count();
             // System.out.println(noOfLines);
