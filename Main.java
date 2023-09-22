@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -10,6 +8,7 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
+import java.io.PrintWriter;
 
 class Person {
     int xCoordinate;
@@ -433,6 +432,13 @@ public class Main {
         ExperimentData[] experiment3 = new ExperimentData[4];
         for (int i = 0; i < 4; i++)
             experiment1[i] = new ExperimentData(experiment3DMR[0], experiment3DMR[1], experiment3DMR[2], experiment3Protocols[i], resultsExp3.get((3 * i)), resultsExp3.get((3 * i) + 1), resultsExp3.get((3*i)+2));
+
+        PrintWriter writer = new PrintWriter(new FileWriter("outputfile.txt"));
+            writer.println("*--------------*--------------*---------------*------------*--------------*--------------*-------------*");
+            writer.println("|              |  Max Number  |               |            |    Lowest    |    Highest   |    Average  |");
+            writer.println("|  Dimensions  |   of Moves   |  Repetitions  |  Protocol  |  # of moves  |  # of moves  |  # of moves |");
+            writer.println("*--------------*--------------*---------------*------------*--------------*--------------*-------------*");
+
 
 
         for (Double item : resultsExp1) {
