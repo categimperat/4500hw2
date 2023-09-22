@@ -438,6 +438,11 @@ public class Main {
             writer.println("|              |  Max Number  |               |            |    Lowest    |    Highest   |    Average  |");
             writer.println("|  Dimensions  |   of Moves   |  Repetitions  |  Protocol  |  # of moves  |  # of moves  |  # of moves |");
             writer.println("*--------------*--------------*---------------*------------*--------------*--------------*-------------*");
+            for (int i = 0; i < 5; i++) {
+                writer.printf("| %-12d | %-12d | %-13d | %-10d | %-12.0f | %-12.0f | %-11.2f |\n", experiment1[i].Dimension, experiment1[i].maxMoves, experiment1[i].repetitions, experiment1[i].protocol, experiment1[i].lowMoves, experiment1[i].highMoves, experiment1[i].averageMoves);
+                writer.println("*--------------*--------------*---------------*------------*--------------*--------------*-------------*");
+            }
+        writer.close();
 
 
 
