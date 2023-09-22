@@ -1,12 +1,15 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 class Person {
     int xCoordinate;
@@ -36,8 +39,27 @@ public class Main {
         String line;
         List<String> errors = new ArrayList<>();
 
+        // // check number of lines in file
+        // // credit:
+        // // https://stackoverflow.com/questions/1277880/how-can-i-get-the-count-of-line-in-a-file-in-an-efficient-way
+        // BufferedReader sizeCheck = new BufferedReader(new FileReader("inputfile.txt"));
+        // int lines = 0;
+        // while (sizeCheck.readLine() != null)
+        //     lines++;
+        // if (lines > 6) {
+        //     errors.add("Input file contains too many lines.");
+        // }
+        // sizeCheck.close();
+
+        try (Stream<String> fileStream = Files.lines(Paths.get("inputfile.txt"))) {
+        int noOfLines = (int) fileStream.count();
+        System.out.println(noOfLines);
+    }
+
         // Check and parse each line of input file
-        for (int i = 1; i <= 6; i++) {
+        for (
+
+                int i = 1; i <= 6; i++) {
             line = br.readLine();
             String[] values;
 
