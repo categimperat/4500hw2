@@ -427,11 +427,11 @@ public class Main {
 
         ExperimentData[] experiment2 = new ExperimentData[5];
         for (int i = 0; i < 5; i++)
-            experiment1[i] = new ExperimentData(experiment2DPM[0], experiment2DPM[2], experiment2Reps[i], experiment2DPM[1], resultsExp2.get((3 * i)), resultsExp2.get((3 * i) + 1), resultsExp2.get((3*i)+2));
+            experiment2[i] = new ExperimentData(experiment2DPM[0], experiment2DPM[2], experiment2Reps[i], experiment2DPM[1], resultsExp2.get((3 * i)), resultsExp2.get((3 * i) + 1), resultsExp2.get((3*i)+2));
 
         ExperimentData[] experiment3 = new ExperimentData[4];
         for (int i = 0; i < 4; i++)
-            experiment1[i] = new ExperimentData(experiment3DMR[0], experiment3DMR[1], experiment3DMR[2], experiment3Protocols[i], resultsExp3.get((3 * i)), resultsExp3.get((3 * i) + 1), resultsExp3.get((3*i)+2));
+            experiment3[i] = new ExperimentData(experiment3DMR[0], experiment3DMR[1], experiment3DMR[2], experiment3Protocols[i], resultsExp3.get((3 * i)), resultsExp3.get((3 * i) + 1), resultsExp3.get((3*i)+2));
 
         PrintWriter writer = new PrintWriter(new FileWriter("outputfile.txt"));
             writer.println("*--------------*--------------*---------------*------------*--------------*--------------*-------------*");
@@ -442,6 +442,16 @@ public class Main {
                 writer.printf("| %-12d | %-12d | %-13d | %-10d | %-12.0f | %-12.0f | %-11.2f |\n", experiment1[i].Dimension, experiment1[i].maxMoves, experiment1[i].repetitions, experiment1[i].protocol, experiment1[i].lowMoves, experiment1[i].highMoves, experiment1[i].averageMoves);
                 writer.println("*--------------*--------------*---------------*------------*--------------*--------------*-------------*");
             }
+        writer.println("*--------------*--------------*---------------*------------*--------------*--------------*-------------* Experiment 2");
+        for (int i = 0; i < 5; i++) {
+            writer.printf("| %-12d | %-12d | %-13d | %-10d | %-12.0f | %-12.0f | %-11.2f |\n", experiment2[i].Dimension, experiment2[i].maxMoves, experiment2[i].repetitions, experiment2[i].protocol, experiment2[i].lowMoves, experiment2[i].highMoves, experiment2[i].averageMoves);
+            writer.println("*--------------*--------------*---------------*------------*--------------*--------------*-------------*");
+        }
+        writer.println("*--------------*--------------*---------------*------------*--------------*--------------*-------------* Experiment 3");
+        for (int i = 0; i < 4; i++) {
+            writer.printf("| %-12d | %-12d | %-13d | %-10d | %-12.0f | %-12.0f | %-11.2f |\n", experiment3[i].Dimension, experiment3[i].maxMoves, experiment3[i].repetitions, experiment3[i].protocol, experiment3[i].lowMoves, experiment3[i].highMoves, experiment3[i].averageMoves);
+            writer.println("*--------------*--------------*---------------*------------*--------------*--------------*-------------*");
+        }
         writer.close();
 
 
