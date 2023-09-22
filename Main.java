@@ -305,8 +305,9 @@ public class Main {
 
         while (counter < maxMoves) {
             if (counter % 2 == 0) {
-                move(person1, protocol, Dimension); 
-                // It uses an if statement and take a modulus 2 of the move counter to rotate between each of the players so they alternate turns.
+                move(person1, protocol, Dimension);
+                // It uses an if statement and take a modulus 2 of the move counter to rotate
+                // between each of the players so they alternate turns.
             } else {
                 move(person2, protocol, Dimension);
             }
@@ -327,7 +328,7 @@ public class Main {
             return counter;
     }
 
-    //This function runs the experiment and logs the outcome into a dad list.
+    // This function runs the experiment and logs the outcome into a dad list.
     private static List<Integer> experiment(int repetitions, int Dimension, int maxMoves, int protocol) {
         List<Integer> data = new ArrayList<>();
         for (int i = 0; i < repetitions; i++) {
@@ -341,9 +342,11 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        System.out.println("The program takes an input file which describes the parameters of 3 different experiments." +
+        System.out.println("The program takes an input file which describes the parameters of 3 different experiments."
+                +
                 "The program takes the input file and parses each of the parameters for the experiments, then it runs" +
-                "each experiment according to those parameters.  It will take all the results, calculate the high, low," +
+                "each experiment according to those parameters.  It will take all the results, calculate the high, low,"
+                +
                 " and average values of each experiment, then it will log those results in an output file.");
         double low;
         double high;
@@ -351,8 +354,8 @@ public class Main {
         parseInput();
         List<Integer> data = new ArrayList<>();
 
-        //Running experiment 1
-        for(int i = 0; i < 5; i++) {
+        // Running experiment 1
+        for (int i = 0; i < 5; i++) {
             data = experiment(experiment1PMR[2], experiment1Dimensions[i], experiment1PMR[1], experiment1PMR[0]);
             low = Collections.min(data);
             high = Collections.max(data);
@@ -362,8 +365,8 @@ public class Main {
             resultsExp1.add(average);
         }
 
-        //Running Experiment 2
-        for(int i = 0; i < 5; i++) {
+        // Running Experiment 2
+        for (int i = 0; i < 5; i++) {
             data = experiment(experiment2Reps[i], experiment2DPM[0], experiment2DPM[2], experiment2DPM[1]);
             low = Collections.min(data);
             high = Collections.max(data);
@@ -373,8 +376,8 @@ public class Main {
             resultsExp2.add(average);
         }
 
-        //Running Experiment 3
-        for(int i = 0; i < 4; i++) {
+        // Running Experiment 3
+        for (int i = 0; i < 4; i++) {
             data = experiment(experiment3DMR[2], experiment3DMR[0], experiment3DMR[1], experiment3Protocols[i]);
             low = Collections.min(data);
             high = Collections.max(data);
