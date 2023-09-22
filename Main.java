@@ -19,7 +19,6 @@ class Person {
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
     }
-
 }
 
 public class Main {
@@ -41,20 +40,22 @@ public class Main {
 
         // // check number of lines in file
         // // credit:
-        // // https://stackoverflow.com/questions/1277880/how-can-i-get-the-count-of-line-in-a-file-in-an-efficient-way
-        // BufferedReader sizeCheck = new BufferedReader(new FileReader("inputfile.txt"));
+        // //
+        // https://stackoverflow.com/questions/1277880/how-can-i-get-the-count-of-line-in-a-file-in-an-efficient-way
+        // BufferedReader sizeCheck = new BufferedReader(new
+        // FileReader("inputfile.txt"));
         // int lines = 0;
         // while (sizeCheck.readLine() != null)
-        //     lines++;
+        // lines++;
         // if (lines > 6) {
-        //     errors.add("Input file contains too many lines.");
+        // errors.add("Input file contains too many lines.");
         // }
         // sizeCheck.close();
 
         try (Stream<String> fileStream = Files.lines(Paths.get("inputfile.txt"))) {
-        int noOfLines = (int) fileStream.count();
-        System.out.println(noOfLines);
-    }
+            int noOfLines = (int) fileStream.count();
+            System.out.println(noOfLines);
+        }
 
         // Check and parse each line of input file
         for (
