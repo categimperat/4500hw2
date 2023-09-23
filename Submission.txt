@@ -12,7 +12,7 @@
 //southeast, or southwest. If the Person's move would move them out of bounds of the grid, another move is generated until
 //the Person can make a valid move. Persons alternate turns.
 
-//This program plays this game in three experiments using parameters supplied by inputfile.txt.
+//This program plays this game in three experiments using parameters supplied by indata.txt.
 //The input file must be formatted exactly as described in the homework specification. If it has white space, non-
 //digit or non-comma characters, too many or too few lines, lines with numbers out of ascending order, lines with an incorrent number of parameters,
 //or a parameter greater than the limits defined, it will log these errors in the console and terminate the program.
@@ -59,7 +59,7 @@ class ExperimentData {
     double averageMoves;
 
     public ExperimentData(int dimension, int maxMoves, int repetitions, int protocol, double lowMoves, double highMoves,
-            double averageMoves) {
+                          double averageMoves) {
         Dimension = dimension;
         this.maxMoves = maxMoves;
         this.repetitions = repetitions;
@@ -88,12 +88,12 @@ public class Main {
     //This function takes the input file and makes sure it's valid, and assigns each of the values
     //to its appropriate place in our data structure.
     private static void parseInput() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("inputfile.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("indata.txt"));
 
         String line;
         List<String> errors = new ArrayList<>();
 
-        try (Stream<String> fileStream = Files.lines(Paths.get("inputfile.txt"))) {
+        try (Stream<String> fileStream = Files.lines(Paths.get("indata.txt"))) {
             int noOfLines = (int) fileStream.count();
             if (noOfLines > 6) {
                 errors.add("Input file contains too many lines.");
@@ -411,7 +411,7 @@ public class Main {
     }
 
     // This function takes the results of the experiments run in main() and
-    // writes them to outputfile.txt.
+    // writes them to outdata.txt.
     private static void outputGenerator() throws IOException {
         // Packaging the results of the experiments into objects
         ExperimentData[] experiment1 = new ExperimentData[5];
@@ -433,7 +433,7 @@ public class Main {
                     resultsExp3.get((3 * i) + 2));
 
         // write gets results of experiments and writes them to a file
-        PrintWriter writer = new PrintWriter(new FileWriter("outputfile.txt"));
+        PrintWriter writer = new PrintWriter(new FileWriter("outdata.txt"));
         System.out.println("Generating results...");
         writer.println(
                 "Experiment #1 \nChanges the dimensions of the grid. Other variables are held constant.");
@@ -488,7 +488,7 @@ public class Main {
             writer.println(
                     "*--------------*--------------*---------------*------------*--------------*--------------*-------------*");
         }
-        System.out.println("Results written to outputfile.txt.");
+        System.out.println("Results written to outdata.txt.");
         writer.close();
     }
 
