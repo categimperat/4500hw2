@@ -3,19 +3,19 @@
 //22 Sep 2023
 //CMP SCI 4500
 
-//This program plays a game with two "Person" entities, placing them at the southwest and northwest corners 
-//of a square grid and seeing how many 1-unit moves it takes for them to meet (if they ever do meet). 
-//Two protocols are defined: Protocol 4 and Protocol 8. 
+//This program plays a game with two "Person" entities, placing them at the southwest and northwest corners
+//of a square grid and seeing how many 1-unit moves it takes for them to meet (if they ever do meet).
+//Two protocols are defined: Protocol 4 and Protocol 8.
 //Protocol 4 moves the Persons one unit north, south, east, or west. If the Person's move would move them out of bounds of the grid,
-//it stays in place. Persons alternate turns. 
-//Protocol 8 moves the Persons one unit north, south, east, or west. It can also move them diagonally, northeast, northwest, 
-//southeast, or southwest. If the Person's move would move them out of bounds of the grid, another move is generated until 
+//it stays in place. Persons alternate turns.
+//Protocol 8 moves the Persons one unit north, south, east, or west. It can also move them diagonally, northeast, northwest,
+//southeast, or southwest. If the Person's move would move them out of bounds of the grid, another move is generated until
 //the Person can make a valid move. Persons alternate turns.
 
-//This program plays this game in three experiments using parameters supplied by inputfile.txt. 
+//This program plays this game in three experiments using parameters supplied by inputfile.txt.
 //The input file must be formatted exactly as described in the homework specification. If it has white space, non-
-//digit or non-comma characters, too many or too few lines, lines with numbers out of ascending order, lines with an incorrent number of parameters, 
-//or a parameter greater than the limits defined, it will log these errors in the console and terminate the program. 
+//digit or non-comma characters, too many or too few lines, lines with numbers out of ascending order, lines with an incorrent number of parameters,
+//or a parameter greater than the limits defined, it will log these errors in the console and terminate the program.
 
 //The program runs each experiment according to those parameters. It will take all the results, calculate the high, low,
 // and average values of each experiment, then it will log those results in an output file.
@@ -23,8 +23,8 @@
 //Java regex matching logic was looked up on GeeksforGeeks:
 // https://www.geeksforgeeks.org/how-to-check-if-string-contains-only-digits-in-java/
 
-//Data structures used: 
-//Objects, arrays, Lists, Scanners, BufferedReaders, InputStreams, Writers.  
+//Data structures used:
+//Objects, arrays, Lists, Scanners, BufferedReaders, InputStreams, Writers.
 
 import java.io.*;
 import java.nio.file.Files;
@@ -37,6 +37,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
+//This class holds each person's coordinates as they play the game.
 class Person {
     int xCoordinate;
     int yCoordinate;
@@ -47,6 +48,7 @@ class Person {
     }
 }
 
+//This is a class that creates an object that holds each repetition's of each experiment's data.
 class ExperimentData {
     int Dimension;
     int maxMoves;
@@ -57,7 +59,7 @@ class ExperimentData {
     double averageMoves;
 
     public ExperimentData(int dimension, int maxMoves, int repetitions, int protocol, double lowMoves, double highMoves,
-            double averageMoves) {
+                          double averageMoves) {
         Dimension = dimension;
         this.maxMoves = maxMoves;
         this.repetitions = repetitions;
@@ -69,6 +71,9 @@ class ExperimentData {
 }
 
 public class Main {
+
+    //Here we define the data structures that are integral to the experiments.  The first 3 hold the results of the experiments,
+    //Then the next 6 are what hold the parameters that we get from the input file.
     private static List<Double> resultsExp1 = new ArrayList<>();
     private static List<Double> resultsExp2 = new ArrayList<>();
     private static List<Double> resultsExp3 = new ArrayList<>();
@@ -79,6 +84,9 @@ public class Main {
     private static int[] experiment3Protocols = { 4, 4, 8, 8 };
     private static int[] experiment3DMR = new int[3];
 
+
+    //This function takes the input file and makes sure it's valid, and assigns each of the values
+    //to its appropriate place in our data structure.
     private static void parseInput() throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("inputfile.txt"));
 
@@ -147,7 +155,7 @@ public class Main {
                         errors.add("Line " + i + " contains an illegal character.");
                         break;
                     } else {
-                        //I tried using switch statements here but for some reason they would repeatedly be tripped every loop. 
+                        //I tried using switch statements here but for some reason they would repeatedly be tripped every loop.
                         if (j == 0) {
                             if ((Integer.parseInt(values[0]) != 4) && (Integer.parseInt(values[0]) != 8)) {
                                 errors.add("Line " + i + " contains an incorrect protocol code.");
@@ -298,7 +306,10 @@ public class Main {
         }
     }
 
-    // Function to move the person, protocol 4 or 8
+    // Function to move the person, protocol 4 or 8.  If it's protocol 4 it picks north, east, south, or west
+    // and tries to make a move.  If it fails it goes to the next turn.  Protocol 8 gets compound directions,
+    // so the random number is from 0-7 instead of 0-3 like protocol 4.  It also checks at the end if it's
+    // protocol 8 and hasn't made a move, it will call the move function again until it makes a move.
     private static void move(Person person, int protocol, int Dimension) {
         Person temp = new Person(person.xCoordinate, person.yCoordinate);
         Random rand = new Random();
@@ -386,7 +397,7 @@ public class Main {
             return counter;
     }
 
-    // This function runs the experiment and logs the outcome into a dad list.
+    // This function runs the experiment many times depending on the repetitions and logs the outcome into a data list.
     private static List<Integer> experiment(int repetitions, int Dimension, int maxMoves, int protocol) {
         List<Integer> data = new ArrayList<>();
         for (int i = 0; i < repetitions; i++) {
@@ -425,7 +436,7 @@ public class Main {
         PrintWriter writer = new PrintWriter(new FileWriter("outputfile.txt"));
         System.out.println("Generating results...");
         writer.println(
-                "Experiment #1 changes the dimensions of the grid. Other variables are held constant.");
+                "Experiment #1 \nChanges the dimensions of the grid. Other variables are held constant.");
         writer.println(
                 "*--------------*--------------*---------------*------------*--------------*--------------*-------------*");
         writer.println(
@@ -442,37 +453,37 @@ public class Main {
                     "*--------------*--------------*---------------*------------*--------------*--------------*-------------*");
         }
         writer.println(
-                "Experiment #2 changes the number of wanderings (repeats) on each row. Other variables are held\r\n" + //
+                "Experiment #2 \nChanges the number of wanderings (repeats) on each row. Other variables are held\r\n" + //
                         "constant.");
         writer.println(
                 "*--------------*--------------*---------------*------------*--------------*--------------*-------------*");
         writer.println(
                 "|              |  Max Number  |               |            |    Lowest    |    Highest   |    Average  |");
         writer.println(
-                "|  Dimensions  |   of Moves   |  Repetitions  |  Protocol  |  # of moves  |  # of moves  |  # of moves |");
+                "|  Repetitions |   of Moves   |  Dimensions   |  Protocol  |  # of moves  |  # of moves  |  # of moves |");
         writer.println(
                 "*--------------*--------------*---------------*------------*--------------*--------------*-------------*");
 
         for (int i = 0; i < 5; i++) {
-            writer.printf("| %-12d | %-12d | %-13d | %-10d | %-12.0f | %-12.0f | %-11.2f |\n", experiment2[i].Dimension,
-                    experiment2[i].maxMoves, experiment2[i].repetitions, experiment2[i].protocol,
+            writer.printf("| %-12d | %-12d | %-13d | %-10d | %-12.0f | %-12.0f | %-11.2f |\n", experiment2[i].repetitions,
+                    experiment2[i].maxMoves, experiment2[i].Dimension, experiment2[i].protocol,
                     experiment2[i].lowMoves, experiment2[i].highMoves, experiment2[i].averageMoves);
             writer.println(
                     "*--------------*--------------*---------------*------------*--------------*--------------*-------------*");
         }
         writer.println(
-                "Experiment #3 changes the protocols. Other variables are held constant.");
+                "Experiment #3 \nChanges the protocols. Other variables are held constant.");
         writer.println(
                 "*--------------*--------------*---------------*------------*--------------*--------------*-------------*");
         writer.println(
                 "|              |  Max Number  |               |            |    Lowest    |    Highest   |    Average  |");
         writer.println(
-                "|  Dimensions  |   of Moves   |  Repetitions  |  Protocol  |  # of moves  |  # of moves  |  # of moves |");
+                "|  Protocol    |   of Moves   |  Repetitions  | Dimensions |  # of moves  |  # of moves  |  # of moves |");
         writer.println(
                 "*--------------*--------------*---------------*------------*--------------*--------------*-------------*");
         for (int i = 0; i < 4; i++) {
-            writer.printf("| %-12d | %-12d | %-13d | %-10d | %-12.0f | %-12.0f | %-11.2f |\n", experiment3[i].Dimension,
-                    experiment3[i].maxMoves, experiment3[i].repetitions, experiment3[i].protocol,
+            writer.printf("| %-12d | %-12d | %-13d | %-10d | %-12.0f | %-12.0f | %-11.2f |\n", experiment3[i].protocol,
+                    experiment3[i].maxMoves, experiment3[i].repetitions, experiment3[i].Dimension,
                     experiment3[i].lowMoves, experiment3[i].highMoves, experiment3[i].averageMoves);
             writer.println(
                     "*--------------*--------------*---------------*------------*--------------*--------------*-------------*");
@@ -496,7 +507,7 @@ public class Main {
         parseInput();
         List<Integer> data = new ArrayList<>();
 
-        // Running experiment 1
+        // Running experiment 1 and logging the calculations to a new results data structure.
         for (int i = 0; i < 5; i++) {
             data = experiment(experiment1PMR[2], experiment1Dimensions[i], experiment1PMR[1], experiment1PMR[0]);
             low = Collections.min(data);
@@ -507,7 +518,7 @@ public class Main {
             resultsExp1.add(average);
         }
 
-        // Running Experiment 2
+        // Running Experiment 2 and logging the calculations to a new results data structure.
         for (int i = 0; i < 5; i++) {
             data = experiment(experiment2Reps[i], experiment2DPM[0], experiment2DPM[2], experiment2DPM[1]);
             low = Collections.min(data);
@@ -518,7 +529,7 @@ public class Main {
             resultsExp2.add(average);
         }
 
-        // Running Experiment 3
+        // Running Experiment 3 and logging the calculations to a new results data structure.
         for (int i = 0; i < 4; i++) {
             data = experiment(experiment3DMR[2], experiment3DMR[0], experiment3DMR[1], experiment3Protocols[i]);
             low = Collections.min(data);
